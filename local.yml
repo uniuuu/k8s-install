@@ -1,0 +1,19 @@
+---
+- name: Initial server setup
+  hosts: server
+  become: yes
+  become_user: root
+  become_method: su
+
+  vars_files:
+    - vars.yml
+
+  tasks: 
+  - name: Install packages from vars.yml.
+    yum:
+      name: "{{ packages }}"
+      state: latest
+#       with_items:
+#      - "{{ packages }}"
+#            ['{{ packages }}']
+#        name={{ item }} 

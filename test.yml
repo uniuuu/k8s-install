@@ -1,0 +1,16 @@
+---
+- hosts: server
+  remote_user: root
+  become: yes
+  tasks:
+    - name: Install necessary packages
+      yum: pkg={{ item }} state=installed
+      with_items:
+        - git-core
+        - nginx
+        - gunicorn
+        - python-virtualenv
+        - python-pip
+
+    - name: Clone your repository on Github
+
